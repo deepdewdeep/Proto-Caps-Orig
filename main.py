@@ -133,7 +133,7 @@ if __name__ == "__main__":
         best_val_acc = 0.0
         datestr = str(datetime.datetime.now())
         print("this run has datestr " + datestr)
-        protosavedir = "./prototypes/" + str(datestr)
+        protosavedir ="./prototypes/" + str(datestr)
         os.mkdir(protosavedir)
         earlyStopping_counter = 1
         earlyStopping_max = 10  # push iterations
@@ -162,8 +162,9 @@ if __name__ == "__main__":
                     print("PE_val_attracc: " + str(valwProtoE_attracc))
 
                     if valwProtoE_acc > best_val_acc:
-                        torch.save(model, str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
-                        print("Save new best model with path: " + str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
+                        torch.save(model, '/content/drive/MyDrive/DD/Implementation/utils/' + str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
+#torch.save(model, str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
+                        print("Save new best model with path: " +'/content/drive/MyDrive/DD/Implementation/utils/' + str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
                         best_val_acc = valwProtoE_acc
                         earlyStopping_counter = 1
                     else:
