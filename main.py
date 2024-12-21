@@ -15,6 +15,10 @@ from push import pushprotos
 from train import train_model
 from test import test, test_indepth, test_indepth_attripredCorr, test_show
 
+import os
+
+# Change the working directory
+os.chdir('/content/drive/MyDrive/Proto_models_')
 
 def prototypeLearningStatus(model, unfreeze):
     for protoi in range(len(model.protodigis_list)):
@@ -163,7 +167,7 @@ if __name__ == "__main__":
 
                     if valwProtoE_acc > best_val_acc:
                                         # Make sure the Google Drive directory exists:
-                        save_dir = "/content/drive/MyDrive/Proto_models"
+                        save_dir = "/content/drive/MyDrive/Proto_models_/500ep"
                         os.makedirs(save_dir, exist_ok=True)
 
                         # Construct the full path to your model:
@@ -172,7 +176,7 @@ if __name__ == "__main__":
                             f"{datestr}_{valwProtoE_acc}_{ep}.pth"
                         )
                         torch.save(model, model_path)
-                        print("Save new best model with path: " + str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
+                        print("Saved new best model to:", model_path)
                         best_val_acc = valwProtoE_acc
                         earlyStopping_counter = 1
                     else:
