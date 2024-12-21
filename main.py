@@ -162,7 +162,16 @@ if __name__ == "__main__":
                     print("PE_val_attracc: " + str(valwProtoE_attracc))
 
                     if valwProtoE_acc > best_val_acc:
-                        torch.save(model, str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
+                                        # Make sure the Google Drive directory exists:
+                        save_dir = "/content/drive/MyDrive/Proto_models"
+                        os.makedirs(save_dir, exist_ok=True)
+
+                        # Construct the full path to your model:
+                        model_path = os.path.join(
+                            save_dir,
+                            f"{datestr}_{valwProtoE_acc}_{ep}.pth"
+                        )
+                        torch.save(model, model_path)
                         print("Save new best model with path: " + str(datestr) + "_" + str(valwProtoE_acc) + "_" + str(ep) + '.pth')
                         best_val_acc = valwProtoE_acc
                         earlyStopping_counter = 1
